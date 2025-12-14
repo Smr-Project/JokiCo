@@ -13,13 +13,43 @@
             min-height: 100vh; /* Memastikan body mencakup seluruh tinggi viewport */
         }
         
+        /* Gaya untuk Pesan Selamat Datang Animasi (Menggantikan ruang iframe) */
+        #welcome-message {
+            display: flex; /* Mengaktifkan Flexbox untuk pemusatan */
+            justify-content: center; /* Memusatkan teks secara horizontal */
+            align-items: center; /* Memusatkan teks secara vertikal */
+            flex-grow: 1; /* Mengambil semua ruang yang tersisa */
+            background-color: #ffe082; /* Latar belakang kuning muda */
+            font-size: 4em;
+            font-weight: bold;
+            color: #d32f2f; /* Warna teks awal */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Bayangan teks */
+            /* Menerapkan Animasi */
+            animation: pulseColor 3s infinite alternate; 
+        }
+
+        /* Keyframes untuk Animasi Berkedip/Perubahan Warna */
+        @keyframes pulseColor {
+            0% {
+                color: #d32f2f; /* Merah gelap */
+                transform: scale(1);
+            }
+            50% {
+                color: #ff8c00; /* Oranye Terang */
+                transform: scale(1.1); /* Sedikit membesar */
+            }
+            100% {
+                color: #556b2f; /* Hijau gelap */
+                transform: scale(1);
+            }
+        }
+
+        /* Iframe disembunyikan agar Pesan Selamat Datang yang ditampilkan */
         iframe {
-            display: block;
+            display: none; /* Sembunyikan iframe */
             width: 100%;
-            /* Menggunakan flex-grow: 1 agar iframe mengambil semua ruang yang tersisa */
-            flex-grow: 1; 
             border: none;
-            background: lightyellow;
+            /* background: lightyellow; telah dihapus/digantikan oleh #welcome-message background */
         }
         
         /* Styling untuk Footer */
@@ -34,6 +64,12 @@
     </style>
 </head>
 <body>
+    <!-- Elemen Pesan Selamat Datang Animasi yang mengambil ruang iframe -->
+    <div id="welcome-message">
+        SELAMAT DATANG
+    </div>
+    
+    <!-- Iframe asli disembunyikan (display: none di CSS) -->
     <iframe src="https://script.google.com/macros/s/AKfycbzT3b7kw2UnMbfnijM010NJ4WrFq7zSxDDQH7OyVLsi3E6wk7nPi9uPeHCpluutYxiO/exec" allow="camera"></iframe>
     
     <!-- Elemen Footer Baru -->
