@@ -13,62 +13,61 @@
             min-height: 100vh; /* Memastikan body mencakup seluruh tinggi viewport */
         }
         
-        /* Gaya untuk Pesan Selamat Datang Animasi */
+        /* Gaya untuk Pesan Selamat Datang (sekarang untuk Logo) */
         #welcome-message {
             display: flex; /* Mengaktifkan Flexbox untuk pemusatan */
-            justify-content: center; /* Memusatkan teks secara horizontal */
-            align-items: center; /* Memusatkan teks secara vertikal */
+            justify-content: center; /* Memusatkan konten secara horizontal */
+            align-items: center; /* Memusatkan konten secara vertikal */
             flex-grow: 1; /* Mengambil semua ruang yang tersisa */
             background-color: #ffe082; /* Latar belakang kuning muda */
-            font-size: 4em;
-            font-weight: bold;
-            color: #d32f2f; /* Warna teks awal */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Bayangan teks */
-            /* Menerapkan Animasi */
-            animation: pulseColor 3s infinite alternate; 
+        }
+        
+        /* Gaya untuk Logo Gambar */
+        #welcome-message img {
+            max-width: 80%; /* Batasi lebar gambar agar tidak terlalu besar */
+            max-height: 80vh; /* Batasi tinggi gambar sesuai viewport */
+            height: auto;
+            border-radius: 15px; /* Sudut membulat untuk estetika (opsional) */
+            /* Menerapkan Animasi Logo */
+            animation: logoPulse 3s infinite alternate; 
         }
 
-        /* Keyframes untuk Animasi Berkedip/Perubahan Warna */
-        @keyframes pulseColor {
+        /* Keyframes untuk Animasi Logo */
+        @keyframes logoPulse {
             0% {
-                color: #d32f2f; /* Merah gelap */
-                transform: scale(1);
-            }
-            50% {
-                color: #ff8c00; /* Oranye Terang */
-                transform: scale(1.1); /* Sedikit membesar */
+                opacity: 0.8; /* Sedikit transparan */
+                transform: scale(0.95); /* Sedikit menyusut */
             }
             100% {
-                color: #556b2f; /* Hijau gelap */
-                transform: scale(1);
+                opacity: 1; /* Penuh/Jelas */
+                transform: scale(1.05); /* Sedikit membesar */
             }
         }
 
         /* Styling untuk Iframe */
         iframe {
-            /* Penting: Secara default disembunyikan, akan ditampilkan oleh JavaScript */
-            display: none; 
+            display: none; /* Penting: Secara default disembunyikan, akan ditampilkan oleh JavaScript */
             width: 100%;
-            flex-grow: 1; /* Agar mengambil ruang yang tersisa setelah pesan tersembunyi */
+            flex-grow: 1; 
             border: none;
-            background: #fff; /* Latar belakang putih saat iframe dimuat */
+            background: #fff; 
         }
         
         /* Styling untuk Footer */
         footer {
             padding: 10px;
             text-align: center;
-            background-color: #f1f1f1; /* Warna latar belakang abu-abu muda */
-            color: #333; /* Warna teks gelap */
+            background-color: #f1f1f1; 
+            color: #333; 
             font-size: 0.9em;
-            flex-shrink: 0; /* Mencegah footer menyusut */
+            flex-shrink: 0; 
         }
     </style>
 </head>
 <body>
-    <!-- Elemen Pesan Selamat Datang Animasi -->
+    <!-- Elemen Logo Animasi (Ganti URL_LOGO_ANDA.png dengan URL Anda) -->
     <div id="welcome-message">
-        SELAMAT DATANG
+        <img src="URL_LOGO_ANDA.png" alt="Logo Proyek SMR">
     </div>
     
     <!-- Iframe asli, diberikan ID dan display: none secara default -->
@@ -80,17 +79,16 @@
     </footer>
 
     <script>
-        // Durasi tampilan pesan selamat datang dalam milidetik (3000ms = 3 detik)
+        // Durasi tampilan pesan selamat datang/logo dalam milidetik (3000ms = 3 detik)
         const displayDuration = 3000; 
 
-        // Fungsi yang dijalankan setelah dokumen dimuat
         document.addEventListener('DOMContentLoaded', () => {
             const welcomeMessage = document.getElementById('welcome-message');
             const mainIframe = document.getElementById('main-iframe');
 
             // Gunakan setTimeout untuk menunggu durasi yang ditentukan
             setTimeout(() => {
-                // 1. Sembunyikan pesan selamat datang
+                // 1. Sembunyikan pesan/logo
                 welcomeMessage.style.display = 'none';
 
                 // 2. Tampilkan iframe (tujuan)
