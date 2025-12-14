@@ -13,7 +13,7 @@
             min-height: 100vh; /* Memastikan body mencakup seluruh tinggi viewport */
         }
         
-        /* Gaya untuk Pesan Selamat Datang Animasi (Menggantikan ruang iframe) */
+        /* Gaya untuk Pesan Selamat Datang Animasi */
         #welcome-message {
             display: flex; /* Mengaktifkan Flexbox untuk pemusatan */
             justify-content: center; /* Memusatkan teks secara horizontal */
@@ -44,12 +44,14 @@
             }
         }
 
-        /* Iframe disembunyikan agar Pesan Selamat Datang yang ditampilkan */
+        /* Styling untuk Iframe */
         iframe {
-            display: none; /* Sembunyikan iframe */
+            /* Penting: Secara default disembunyikan, akan ditampilkan oleh JavaScript */
+            display: none; 
             width: 100%;
+            flex-grow: 1; /* Agar mengambil ruang yang tersisa setelah pesan tersembunyi */
             border: none;
-            /* background: lightyellow; telah dihapus/digantikan oleh #welcome-message background */
+            background: #fff; /* Latar belakang putih saat iframe dimuat */
         }
         
         /* Styling untuk Footer */
@@ -64,17 +66,37 @@
     </style>
 </head>
 <body>
-    <!-- Elemen Pesan Selamat Datang Animasi yang mengambil ruang iframe -->
+    <!-- Elemen Pesan Selamat Datang Animasi -->
     <div id="welcome-message">
         SELAMAT DATANG
     </div>
     
-    <!-- Iframe asli disembunyikan (display: none di CSS) -->
-    <iframe src="https://script.google.com/macros/s/AKfycbzT3b7kw2UnMbfnijM010NJ4WrFq7zSxDDQH7OyVLsi3E6wk7nPi9uPeHCpluutYxiO/exec" allow="camera"></iframe>
+    <!-- Iframe asli, diberikan ID dan display: none secara default -->
+    <iframe id="main-iframe" src="https://script.google.com/macros/s/AKfycbzT3b7kw2UnMbfnijM010NJ4WrFq7zSxDDQH7OyVLsi3E6wk7nPi9uPeHCpluutYxiO/exec" allow="camera"></iframe>
     
     <!-- Elemen Footer Baru -->
     <footer>
         &copy; Copyright 2025; By, Smr Project
     </footer>
+
+    <script>
+        // Durasi tampilan pesan selamat datang dalam milidetik (3000ms = 3 detik)
+        const displayDuration = 3000; 
+
+        // Fungsi yang dijalankan setelah dokumen dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            const welcomeMessage = document.getElementById('welcome-message');
+            const mainIframe = document.getElementById('main-iframe');
+
+            // Gunakan setTimeout untuk menunggu durasi yang ditentukan
+            setTimeout(() => {
+                // 1. Sembunyikan pesan selamat datang
+                welcomeMessage.style.display = 'none';
+
+                // 2. Tampilkan iframe (tujuan)
+                mainIframe.style.display = 'block';
+            }, displayDuration); // Akan dijalankan setelah 3 detik
+        });
+    </script>
 </body>
 </html>
